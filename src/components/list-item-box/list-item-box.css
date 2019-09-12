@@ -1,0 +1,16 @@
+.list-item-box{
+  margin: 0.4rem 0;
+}
+
+.list-item {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* .list-item:hover {
+  background-color: #e9ecef;
+} */
+
+.itemDone {
+  text-decoration: line-through;
+}
