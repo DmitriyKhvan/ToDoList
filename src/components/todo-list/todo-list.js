@@ -21,6 +21,7 @@ export default class ToDoList extends Component {
       this.setState({
         todoData
       })
+      this.id = todoData[todoData.length-1].id + 1;
     });
   };
 
@@ -106,7 +107,7 @@ export default class ToDoList extends Component {
   render() {
 
     const {todoData} = this.state;
-    
+
     return (
       <div id="ToDoList">
         <ToDoHeader 
