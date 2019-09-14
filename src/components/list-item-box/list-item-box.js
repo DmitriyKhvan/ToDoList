@@ -4,7 +4,11 @@ import "./list-item-box.css";
 
 const ListItemBox = ({todoData, onToggleImportant, onToggleDone, deleteItem}) => {
 
-  const elements = todoData.map((item) => {
+  const sortTodoData = [...todoData]
+      .sort( (a, b) => a.done - b.done  )
+      .sort( (a, b) => b.important - a.important);
+
+  const elements = sortTodoData.map((item) => {
     const {id, label, important, done} = item;
 
     let className = "list-group-item list-item";
