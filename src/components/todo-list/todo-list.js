@@ -105,7 +105,6 @@ export default class ToDoList extends Component {
 
 
   render() {
-
     const {todoData} = this.state;
 
     return (
