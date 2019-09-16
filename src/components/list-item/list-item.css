@@ -3,3 +3,7 @@
   width: 2rem;
   margin-left: 0.3rem;
 }
+
+.list-item span {
+  flex-basis: 80%
+}

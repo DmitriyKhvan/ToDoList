@@ -11,7 +11,7 @@ const ListItemBox = ({todoData, onToggleImportant, onToggleDone, deleteItem}) =>
   const elements = sortTodoData.map((item) => {
     const {id, label, important, done} = item;
 
-    let className = "list-group-item list-item";
+    let className = "list-group-item list-item flex-container";
     if (important) {
       className += " list-group-item-danger";
     }

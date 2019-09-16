@@ -5,7 +5,7 @@ export default class AddItem extends Component {
     label: ""
   };
 
-  onChangeLagel = e => {
+  onChangeLabel = e => {
     this.setState({
       label: e.target.value
     });
@@ -31,7 +31,7 @@ export default class AddItem extends Component {
             type="text"
             className="form-control"
             placeholder="What needs to be done"
-            onChange={this.onChangeLagel}
+            onChange={this.onChangeLabel}
             value={this.state.label}
           />
           <div className="input-group-append">

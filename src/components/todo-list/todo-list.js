@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ToDoHeader from "../todo-header";
 import ListItemBox from "../list-item-box";
 import AddItem from "../add-item";
+import SearchItem from "../search-item";
 import TodoApiService from "../../services/todoapi-service";
 import "./todo-list.css";
 
@@ -13,7 +14,8 @@ export default class ToDoList extends Component {
   todoApiService = new TodoApiService();
 
   state = {
-    todoData: []
+    todoData: [],
+    term: ''
   }
 
   componentDidMount() {
@@ -102,18 +104,36 @@ export default class ToDoList extends Component {
     });
   }
 
+  findItems(todoData, term) {
+    if(term === "") {
+      return todoData;
+    }
+
+    return todoData.filter((item) => {
+      return item.label
+        .toLowerCase()
+        .indexOf(term.toLowerCase()) > -1
+    });
+  }
+
+  onSearchItem = (term) => {
+    this.setState({ term });
+  }
 
 
   render() {
-    const {todoData} = this.state;
+    const {todoData, term} = this.state;
+
+    const visibleItems = this.findItems(todoData, term);
 
     return (
       <div id="ToDoList">
         <ToDoHeader 
           todoData = {todoData}
         />
+        <SearchItem onSearchItem = {this.onSearchItem}/>
         <ListItemBox 
-          todoData = {todoData}
+          todoData = {visibleItems}
           onToggleImportant = {this.onToggleImportant}
           onToggleDone = {this.onToggleDone}
           deleteItem = {this.deleteItem}

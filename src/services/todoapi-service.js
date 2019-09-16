@@ -16,7 +16,7 @@ export default class TodoApiService {
 
   getAllTodoData = async () => {
     const res = await this.getResource(`/todos/`);
-    return res.map(this._transformTodoItem).slice(0, 3);
+    return res.map(this._transformTodoItem).slice(0, 5);
   }
 
 
