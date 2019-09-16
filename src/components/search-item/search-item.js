@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './search-item.css';
 
 export default class SearchItem extends Component {
 
@@ -14,7 +15,7 @@ export default class SearchItem extends Component {
 
   render() {
     return(
-      <input className="form-control" 
+      <input className="form-control search-panel" 
             type="text" 
             placeholder="Search Item" 
             value = {this.state.term}

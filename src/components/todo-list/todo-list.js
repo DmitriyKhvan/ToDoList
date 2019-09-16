@@ -3,6 +3,8 @@ import ToDoHeader from "../todo-header";
 import ListItemBox from "../list-item-box";
 import AddItem from "../add-item";
 import SearchItem from "../search-item";
+import FilterItem from "../filter-item";
+
 import TodoApiService from "../../services/todoapi-service";
 import "./todo-list.css";
 
@@ -15,7 +17,8 @@ export default class ToDoList extends Component {
 
   state = {
     todoData: [],
-    term: ''
+    term: '',
+    filter: 'all'
   }
 
   componentDidMount() {
@@ -120,18 +123,43 @@ export default class ToDoList extends Component {
     this.setState({ term });
   }
 
+  onChangeFilter = (filter) => {
+    this.setState({ filter });
+  }
+
+  filter = (todoData, filter) => {
+    switch(filter) {
+      case "all":
+        return todoData;
+
+      case "active":
+        return todoData.filter((item) => !item.done);
+
+      case "done": 
+        return todoData.filter((item) => item.done);
+      
+      default:
+        return todoData;
+    }
+  }
 
   render() {
-    const {todoData, term} = this.state;
+    const {todoData, term, filter} = this.state;
 
-    const visibleItems = this.findItems(todoData, term);
+    const visibleItems = this.filter(this.findItems(todoData, term), filter);
 
     return (
       <div id="ToDoList">
         <ToDoHeader 
           todoData = {todoData}
         />
-        <SearchItem onSearchItem = {this.onSearchItem}/>
+        <div className="d-flex">
+          <SearchItem onSearchItem = {this.onSearchItem}/>
+          <FilterItem 
+            filter={filter}
+            onChangeFilter={this.onChangeFilter}
+          />
+        </div>
         <ListItemBox 
           todoData = {visibleItems}
           onToggleImportant = {this.onToggleImportant}
